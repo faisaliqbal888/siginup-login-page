@@ -1,0 +1,257 @@
+/* ============================================================
+   NOVA — Dark Luxe + Gold Accents
+   ============================================================ */
+:root {
+  --bg-deep:#0b0910;
+  --bg-surface:rgba(20,17,28,.72);
+  --bg-input:rgba(255,255,255,.045);
+  --bg-input-focus:rgba(255,255,255,.07);
+
+  --ink:#f4efe9;
+  --ink-soft:#c9c0b4;
+  --ink-muted:#8a8278;
+
+  --gold:#e8c98a;
+  --gold-bright:#f3dca8;
+  --gold-deep:#b8924e;
+
+  --line:rgba(232,201,138,.18);
+  --line-strong:rgba(232,201,138,.4);
+
+  --shadow-soft:0 30px 90px rgba(0,0,0,.55);
+  --shadow-glow:0 0 0 1px rgba(232,201,138,.06),0 18px 60px rgba(0,0,0,.45);
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0; min-height:100vh; color:var(--ink);
+  font-family:"DM Sans",sans-serif;
+  background:var(--bg-deep);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+button,input { font:inherit; }
+
+/* ---------- Page shell + ambient glow ---------- */
+.page-shell {
+  min-height:100vh; display:grid; place-items:center; overflow:hidden;
+  position:relative; padding:28px;
+  background:
+    radial-gradient(120% 90% at 12% 8%, rgba(232,201,138,.10) 0%, transparent 46%),
+    radial-gradient(110% 80% at 92% 100%, rgba(120,92,180,.16) 0%, transparent 52%),
+    linear-gradient(160deg,#0e0b14 0%,#0b0910 55%,#080610 100%);
+}
+
+/* ---------- Drifting orbs ---------- */
+.orb {
+  position:absolute; border-radius:50%; pointer-events:none;
+  filter:blur(2px); opacity:.85;
+  animation:drift 12s ease-in-out infinite alternate;
+  will-change:transform;
+}
+.orb-one {
+  width:27rem; height:27rem; top:-12rem; left:-11rem;
+  background:radial-gradient(circle at 65% 65%, rgba(232,201,138,.16), transparent 67%);
+}
+.orb-two {
+  width:31rem; height:31rem; bottom:-17rem; right:-12rem;
+  background:radial-gradient(circle at 34% 33%, rgba(180,150,220,.14), transparent 64%);
+  animation-delay:-6s;
+}
+.orb-three {
+  width:14rem; height:14rem; right:14%; top:5%;
+  background:radial-gradient(circle at 50% 50%, rgba(243,220,168,.12), transparent 60%);
+  filter:blur(26px); animation-duration:9s;
+}
+
+/* ---------- Film grain overlay ---------- */
+.grain {
+  position:absolute; inset:0; z-index:1; pointer-events:none;
+  opacity:.035; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Auth card ---------- */
+.auth-card {
+  position:relative; z-index:2; width:min(960px,100%); min-height:600px;
+  display:flex; overflow:hidden; isolation:isolate;
+  background:var(--bg-surface);
+  border:1px solid var(--line);
+  border-radius:28px;
+  box-shadow:var(--shadow-soft), var(--shadow-glow);
+  backdrop-filter:blur(20px) saturate(135%);
+  -webkit-backdrop-filter:blur(20px) saturate(135%);
+}
+/* Premium gold hairline along the top edge */
+.auth-card::before {
+  content:""; position:absolute; inset:0 0 auto 0; height:1px; z-index:6;
+  background:linear-gradient(90deg, transparent, var(--gold-bright) 18%, var(--gold-deep) 50%, var(--gold-bright) 82%, transparent);
+  opacity:.55;
+}
+@supports not (backdrop-filter:blur(1px)) {
+  .auth-card { background:#13101b; }
+}
+
+/* ---------- Brand ---------- */
+.brand {
+  position:absolute; z-index:5; top:32px; left:42px;
+  display:flex; align-items:center; gap:9px;
+  color:var(--ink); font-weight:700; letter-spacing:-.7px; font-size:20px;
+}
+.brand-mark {
+  display:grid; place-items:center; width:26px; height:26px;
+  border-radius:9px; color:#1a1206;
+  background:linear-gradient(135deg, var(--gold-bright), var(--gold) 55%, var(--gold-deep));
+  font-family:"Playfair Display",Georgia,serif; font-size:15px; font-style:italic;
+  box-shadow:0 4px 14px rgba(232,201,138,.35), inset 0 1px 0 rgba(255,255,255,.4);
+}
+
+/* ---------- Forms column ---------- */
+.forms { width:58%; position:relative; overflow:hidden; }
+
+.form {
+  width:100%; max-width:390px; position:absolute; top:108px; left:50%;
+  padding:0 20px; transform:translateX(-50%);
+  transition:opacity .45s ease, transform .7s cubic-bezier(.2,.8,.2,1);
+}
+.sign-up-form { opacity:0; pointer-events:none; transform:translate(70px,0); }
+
+.eyebrow {
+  display:inline-block; color:var(--gold);
+  font-size:10px; font-weight:700; letter-spacing:1.7px;
+}
+
+h1 {
+  margin:12px 0; font-family:"Playfair Display",Georgia,serif;
+  font-size:39px; line-height:1.08; letter-spacing:-1.3px; font-weight:600;
+  color:var(--ink);
+}
+h1 em, .story-content em {
+  color:var(--gold-bright); font-style:italic; font-weight:600;
+}
+
+.form-intro { margin:0 0 25px; color:var(--ink-muted); font-size:13px; line-height:1.55; }
+
+label {
+  display:block; margin:13px 0; color:var(--ink-soft);
+  font-size:11px; font-weight:600; letter-spacing:.2px;
+}
+label a { float:right; color:var(--gold); text-decoration:none; font-weight:500; transition:color .2s; }
+label a:hover { color:var(--gold-bright); }
+
+input {
+  width:100%; display:block; margin-top:7px; padding:13px 14px;
+  color:var(--ink); outline:0;
+  border:1px solid var(--line); border-radius:10px;
+  background:var(--bg-input); font-size:13px;
+  transition:border-color .25s, box-shadow .25s, background .25s, transform .25s;
+}
+input::placeholder { color:#6f6a78; }
+input:focus {
+  border-color:var(--gold);
+  background:var(--bg-input-focus);
+  box-shadow:0 0 0 4px rgba(232,201,138,.14);
+  transform:translateY(-1px);
+}
+
+/* ---------- Submit button (gold + shimmer) ---------- */
+form > button {
+  position:relative; overflow:hidden; width:100%; margin-top:12px;
+  padding:14px 17px; border:0; border-radius:10px;
+  color:#1a1206;
+  background:linear-gradient(115deg, var(--gold-bright), var(--gold) 52%, var(--gold-deep));
+  box-shadow:0 12px 26px rgba(232,201,138,.28), inset 0 1px 0 rgba(255,255,255,.45);
+  cursor:pointer; font-size:13px; font-weight:700; letter-spacing:.2px;
+  transition:transform .25s, box-shadow .25s, filter .25s;
+}
+form > button span { float:right; font-size:18px; line-height:12px; transition:transform .25s; }
+form > button::after {
+  content:""; position:absolute; top:0; left:-130%; width:60%; height:100%;
+  background:linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent);
+  transform:skewX(-18deg); transition:left .6s ease;
+}
+form > button:hover {
+  transform:translateY(-2px);
+  box-shadow:0 16px 32px rgba(232,201,138,.42), inset 0 1px 0 rgba(255,255,255,.5);
+  filter:saturate(108%);
+}
+form > button:hover::after { left:130%; }
+form > button:hover span { transform:translateX(3px); }
+form > button:active { transform:translateY(0); }
+
+/* ---------- Trust note ---------- */
+.trust-note {
+  margin:16px 0 0; text-align:center; color:var(--ink-muted);
+  font-size:11px; letter-spacing:.3px; opacity:.85;
+}
+
+/* ---------- Switch copy ---------- */
+.switch-copy { margin-top:20px; text-align:center; color:var(--ink-soft); font-size:12px; }
+.text-button {
+  padding:0 2px; border:0; color:var(--gold); background:transparent;
+  cursor:pointer; font-size:12px; font-weight:700; transition:color .2s;
+}
+.text-button:hover { color:var(--gold-bright); }
+
+/* ---------- Story panel ---------- */
+.story-panel {
+  position:relative; width:42%; overflow:hidden; color:var(--ink);
+  background:
+    radial-gradient(120% 90% at 80% 10%, rgba(232,201,138,.14), transparent 55%),
+    linear-gradient(150deg, #1c1530 0%, #140e22 52%, #0c0814 100%);
+}
+.story-panel::before, .story-panel::after {
+  content:""; position:absolute; border:1px solid rgba(232,201,138,.16); border-radius:50%;
+}
+.story-panel::before { width:370px; height:370px; right:-155px; top:-80px; }
+.story-panel::after { width:280px; height:280px; left:-145px; bottom:-105px; }
+
+.story-content {
+  position:absolute; z-index:1; left:48px; right:35px; bottom:83px;
+  transition:opacity .4s ease, transform .7s cubic-bezier(.2,.8,.2,1);
+}
+.story-signup { opacity:0; transform:translateX(45px); }
+
+.sparkle { display:block; margin-bottom:17px; color:var(--gold-bright); font-size:28px; text-shadow:0 0 22px rgba(232,201,138,.45); }
+.story-content p { margin:0; font-family:"Playfair Display",Georgia,serif; font-size:30px; line-height:1.18; letter-spacing:-.6px; }
+.quote-line { width:43px; height:2px; margin:25px 0 14px; background:linear-gradient(90deg, var(--gold-bright), transparent); }
+.story-content small { color:var(--ink-soft); font-size:9px; letter-spacing:1.4px; }
+
+.panel-dots { position:absolute; bottom:34px; left:48px; display:flex; gap:7px; z-index:1; }
+.panel-dots i { width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,.32); }
+.panel-dots i:first-child { width:20px; border-radius:5px; background:var(--gold); box-shadow:0 0 10px rgba(232,201,138,.5); transition:.5s; }
+
+/* ---------- Sign-up mode toggles ---------- */
+.auth-card.signup .sign-in-form { opacity:0; pointer-events:none; transform:translate(-70px,0); }
+.auth-card.signup .sign-up-form { opacity:1; pointer-events:auto; transform:translateX(-50%); }
+.auth-card.signup .story-signin { opacity:0; transform:translateX(-45px); }
+.auth-card.signup .story-signup { opacity:1; transform:translateX(0); }
+.auth-card.signup .panel-dots i:first-child { width:5px; background:rgba(255,255,255,.32); box-shadow:none; }
+.auth-card.signup .panel-dots i:nth-child(2) { width:20px; border-radius:5px; background:var(--gold); box-shadow:0 0 10px rgba(232,201,138,.5); }
+
+/* ---------- Keyframes ----------
+   drift consumes --px/--py so JS pointer-parallax can bias the
+   oscillation without clobbering the animation's own transform. */
+@keyframes drift {
+  from { transform:translate(var(--px,0px), var(--py,0px)); }
+  to   { transform:translate(calc(var(--px,0px) + 25px), calc(var(--py,0px) + 18px)) scale(1.07); }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width:700px) {
+  .page-shell { padding:16px; align-items:stretch; }
+  .auth-card { min-height:620px; border-radius:22px; }
+  .story-panel { display:none; }
+  .forms { width:100%; }
+  .form { top:108px; max-width:440px; }
+  .brand { left:28px; top:27px; }
+  h1 { font-size:36px; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion:reduce) {
+  *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+  form > button::after { display:none; }
+}

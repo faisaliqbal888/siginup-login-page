@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova — Welcome</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page-shell">
+    <div class="orb orb-one"></div><div class="orb orb-two"></div><div class="orb orb-three"></div>
+    <div class="grain"></div>
+    <section class="auth-card" aria-label="Account access">
+      <div class="brand"><span class="brand-mark">N</span>nova</div>
+      <div class="forms">
+        <form class="form sign-in-form" action="#">
+          <span class="eyebrow">WELCOME BACK</span>
+          <h1>Good to see<br><em>you again.</em></h1>
+          <p class="form-intro">Sign in to pick up right where you left off.</p>
+          <label>Email address<input type="email" placeholder="you@example.com" autocomplete="email" required></label>
+          <label>Password <a href="#">Forgot password?</a><input type="password" placeholder="••••••••" autocomplete="current-password" required></label>
+          <button type="submit">Sign in <span>→</span></button>
+          <p class="trust-note">🔒 Secured with 256-bit encryption</p>
+          <p class="switch-copy">New to Nova? <button class="text-button" type="button" data-mode="signup">Create an account</button></p>
+        </form>
+        <form class="form sign-up-form" action="#">
+          <span class="eyebrow">START YOUR JOURNEY</span>
+          <h1>Create your<br><em>beautiful space.</em></h1>
+          <p class="form-intro">A calmer way to keep your ideas and plans together.</p>
+          <label>Your name<input type="text" placeholder="Alex Morgan" autocomplete="name" required></label>
+          <label>Email address<input type="email" placeholder="you@example.com" autocomplete="email" required></label>
+          <label>Password<input type="password" placeholder="At least 8 characters" autocomplete="new-password" required></label>
+          <button type="submit">Create account <span>→</span></button>
+          <p class="trust-note">🔒 Secured with 256-bit encryption</p>
+          <p class="switch-copy">Already a member? <button class="text-button" type="button" data-mode="signin">Sign in instead</button></p>
+        </form>
+      </div>
+      <aside class="story-panel">
+        <div class="story-content story-signin"><span class="sparkle">✦</span><p>Thoughtfully made for<br>your <em>brightest</em> ideas.</p><div class="quote-line"></div><small>MAKE SPACE FOR WHAT MATTERS</small></div>
+        <div class="story-content story-signup"><span class="sparkle">✦</span><p>Your next great<br>chapter starts <em>here.</em></p><div class="quote-line"></div><small>WELCOME TO NOVA</small></div>
+        <div class="panel-dots"><i></i><i></i><i></i></div>
+      </aside>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
